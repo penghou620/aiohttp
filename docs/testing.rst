@@ -116,10 +116,10 @@ app test client::
         resp = await cli.post('/', data={'value': 'foo'})
         assert resp.status == 200
         assert await resp.text() == 'thanks for the data'
-        assert cli.app['value'] == 'foo'
+        assert cli.server.app['value'] == 'foo'
 
     async def test_get_value(cli):
-        cli.app['value'] = 'bar'
+        cli.server.app['value'] = 'bar'
         resp = await cli.get('/')
         assert resp.status == 200
         assert await resp.text() == 'value: bar'
